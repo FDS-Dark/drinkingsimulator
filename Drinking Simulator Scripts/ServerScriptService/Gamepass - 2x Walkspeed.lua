@@ -5,7 +5,7 @@ game.Players.PlayerAdded:Connect(function(player)
 	player.CharacterAdded:Connect(function(character)
 		if mps:UserOwnsGamePassAsync(player.UserId, gamepass) then
 			local h = character:WaitForChild("Humanoid")
-			h.WalkSpeed = 40
+			h.WalkSpeed = h.WalkSpeed + 40
 		end
 	end)
 end)
