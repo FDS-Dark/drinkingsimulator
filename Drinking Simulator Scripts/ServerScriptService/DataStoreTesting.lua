@@ -68,33 +68,20 @@ local function onPlayerJoin(player) --Creates Leaderstats folder & Playerstats F
 	
 	local playerUserId = "Player_"..player.UserId
 	local data = playerData:GetAsync(playerUserId)
+	
 	if data then
-		drinks.Value = data["Drinks"]
-		coins.Value = data["Coins"]
-		gems.Value = data["Gems"]
-		rebirths.Value = data["Rebirths"]
-		capacity.Value = data["Capacity"]
-		backpackusage.Value = data["BackpackUsage"]
-		multiplier.Value = data["Multiplier"]
-		clickmultiplier.Value = data["ClickMultiplier"]
-		sellmultiplier.Value = data["SellMultiplier"]
-		pickupmultiplier.Value = data["PickupMultiplier"]
-		rebirthmultiplier.Value = data["RebirthMultiplier"]
-		
-		--AUSTIN TOMORROW POSSIBLY ADD THIS (CHECK WITH RODEVS TO SEE IF IT WORKS)
-		--	if data then
-		--drinks.Value = data["Drinks"] or 0
-		--coins.Value = data["Coins"] or 0
-		--gems.Value = data["Gems"] or 0
-		--rubies.Value = data["Rubies"] or 0
-		--rebirths.Value = data["Rebirths"] or 0
-		--capacity.Value = data["Capacity"] or 25
-		--backpackusage.Value = data["BackpackUsage"] or 0
-		--multiplier.Value = data["Multiplier"] or 1
-		--clickmultiplier.Value = data["ClickMultiplier"] or 1
-		--sellmultiplier.Value = data["SellMultiplier"] or 1
-		--pickupmultiplier.Value = data["PickupMultiplier"] or 1
-		--rebirthmultiplier.Value = data["RebirthMultiplier"] or 1
+		drinks.Value = data["Drinks"] or 0
+		coins.Value = data["Coins"] or 0
+		gems.Value = data["Gems"] or 0
+		rubies.Value = data["Rubies"] or 0
+		rebirths.Value = data["Rebirths"] or 0
+		capacity.Value = data["Capacity"] or 25
+		backpackusage.Value = data["BackpackUsage"] or 0
+		multiplier.Value = data["Multiplier"] or 1
+		clickmultiplier.Value = data["ClickMultiplier"] or 1
+		sellmultiplier.Value = data["SellMultiplier"] or 1
+		pickupmultiplier.Value = data["PickupMultiplier"] or 1
+		rebirthmultiplier.Value = data["RebirthMultiplier"] or 1
 		
 	else
 		drinks.Value = 0
