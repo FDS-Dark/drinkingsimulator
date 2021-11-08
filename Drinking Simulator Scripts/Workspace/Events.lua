@@ -10,26 +10,46 @@ Players.PlayerAdded:Connect(function(plr)
 end)
 
 script.AddDrinks.OnServerEvent:Connect(function(plr)
-	plr.leaderstats.Drinks.Value = plr.leaderstats.Drinks.Value + 1
+	plr.leaderstats.Drinks.Value += 1
 end)
 
-script.AddBackpackUsage.OnServerEvent:Connect(function(plr, amount)	
-	local mps = game:GetService("MarketplaceService")
-	local gamepass = 21278494
-	if plr.playerstats.BackpackUsage.Value >= plr.playerstats.Capacity.Value then
-		game.Workspace.Events.Disabled = true
-		print("Backpack Full!")
+script.AddBackpackUsage.OServerEvent:Connect(function(plr, amount)
+		local mps = game:GetService("MarketplaceService")
+		local gamepass2x = 21278494
+		local gamepassvip = --SET ID
+		local usage = plr.playerstats.BackpackUsage.value
+		local cap = plr.playerstats.Capacity.Value
+		local owns2xgamepass = mps:UserOwnsGamePassAsync(plr.UserId, gamepass2x)
+		local ownsvipgamepass = mps:UserOwnsGamePassAsync(plr.UserId, gamepassvip)
 		
-	elseif plr.playerstats.BackpackUsage.Value < plr.playerstats.Capacity.Value and mps:UserOwnsGamePassAsync(plr.UserId, gamepass) then
-		game.Workspace.Events.Disabled = false
-		print("Backpack Usage Event Received!")
-		script.Sound:Play()
-		plr.playerstats.BackpackUsage.Value += amount * 2
-	
-	elseif plr.playerstats.BackpackUsage.Value < plr.playerstats.Capacity.Value then
-		game.Workspace.Events.Disabled = false
-		print("Backpack Usage Event Received!")
-		script.Sound:Play()
-		plr.playerstats.BackpackUsage.Value += amount
-	end
-end)
+		if usage >= capacity
+			usage = capacity
+			game.Workspace.Events.Disabled = true
+			print("Backpack FUll!")
+		
+		if usage <= capacity then
+			if owns2xgamepass and ownsvipgamepass then
+				game.Workspace.Events.Disabled = false
+				print("Backpack Usage Event Received!")
+				script.Sound:Play()
+					
+				local finalamount = amount * (2 * 1.2)
+				usage += finalamount
+					
+			elseif ownsvipgamepass and not owns2xgamepass then
+				game.Workspace.Events.Disabled = false
+				print("Backpack Usage Event Received!")
+				script.Sound:Play()
+					
+				local finalamount = amount * 1.2
+				usage += finalamount
+					
+			elseif owns2xgamepass and not ownsvipgamepass
+				game.Workspace.Events.Disabled = false
+				print("Backpack Usage Event Received!")
+				script.Sound:Play()
+					
+				local finalamount = amount * 2
+				usage += finalamount
+		end
+	end)
