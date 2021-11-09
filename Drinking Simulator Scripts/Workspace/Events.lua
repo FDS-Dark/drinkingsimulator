@@ -9,6 +9,10 @@ Players.PlayerAdded:Connect(function(plr)
 	end
 end)
 
+local function round(n)
+	return math.floor (n + 0.5)
+end
+
 script.AddDrinks.OnServerEvent:Connect(function(plr)
 	plr.leaderstats.Drinks.Value += 1
 end)
@@ -30,26 +34,36 @@ script.AddBackpackUsage.OServerEvent:Connect(function(plr, amount)
 		if usage <= capacity then
 			if owns2xgamepass and ownsvipgamepass then
 				game.Workspace.Events.Disabled = false
-				print("Backpack Usage Event Received!")
+				print("Owns 2x gamepass and vip gamepass - BPU event received")
 				script.Sound:Play()
 					
 				local finalamount = amount * (2 * 1.2)
-				usage += finalamount
+				local finalvalue = round(finalamount)
+				usage += finalvalue
 					
 			elseif ownsvipgamepass and not owns2xgamepass then
 				game.Workspace.Events.Disabled = false
-				print("Backpack Usage Event Received!")
+				print("Owns vip gamepass - BPU event received")
 				script.Sound:Play()
 					
 				local finalamount = amount * 1.2
-				usage += finalamount
+				local finalvalue = round(finalamount)
+				usage += finalvalue
 					
 			elseif owns2xgamepass and not ownsvipgamepass
 				game.Workspace.Events.Disabled = false
-				print("Backpack Usage Event Received!")
+				print("Owns 2x gamepass - BPU event received")
 				script.Sound:Play()
 					
 				local finalamount = amount * 2
-				usage += finalamount
+				local finalvalue = round(finalamount)
+				usage += finalvalue
+			
+			elseif not owns2xgamepass and not ownsvipgamepass
+				game.Workspace.Events.Disabled = false
+				print("No gamepasses - BPU event received")
+				script.Sound:Play()
+					
+				usage += amount
 		end
 	end)
