@@ -10,7 +10,7 @@ Players.PlayerAdded:Connect(function(plr)
 end)
 
 local function round(n)
-	return math.floor (n + 0.5)
+	return math.ceil (n - 0.5)
 end
 
 script.AddDrinks.OnServerEvent:Connect(function(plr)
